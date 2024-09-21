@@ -1,0 +1,23 @@
+@import '../../../../assets/styles/abstracts/variables.scss';
+@import '../../../../assets/styles/abstracts/text-color.scss';
+
+@import '../../../../assets/styles/components/button.scss';
+
+.vh{
+    min-height: 60vh;
+}
+
+.breadcrumb-item{
+    text-decoration: none;
+    color: $main-p;
+    cursor: pointer;
+}
+.img-fluid{
+    width: 13.75rem;
+    height: 13.75rem;
+}
+
+
+.breadcrumb-item-itedited::before{
+    float: right !important;
+   }

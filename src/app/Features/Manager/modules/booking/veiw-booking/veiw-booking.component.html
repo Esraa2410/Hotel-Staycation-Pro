@@ -1,0 +1,39 @@
+<div class="container p-5 mt-4" *ngIf="bookingData">
+    <div class="row ">
+        <div class="col-md-6 my-2 ">
+            <label for="">{{"booking.username" | translate}}</label>
+            <input disabled type="text" class="form-control" [value]="bookingData.booking.user.userName " name="" id="">
+        </div>
+
+        <div class="col-md-6 my-2">
+            <label for="">{{"booking.room-number" | translate}}</label>
+            <input disabled type="text" class="form-control" [value]="bookingData.booking.room.roomNumber " name="" id="">
+        </div>
+
+        <div class="col-md-6 my-2">
+            <label for="">{{"booking.status" | translate}}</label>
+            <input disabled type="text" class="form-control" [value]="bookingData.booking.status " name="" id="">
+        </div>
+
+        <div class="col-md-6 my-2">
+            <label for="">{{"booking.total-price" | translate}}</label>
+            <input disabled type="text" class="form-control" [value]="bookingData.booking.totalPrice " name="" id="">
+        </div>
+
+        <div class="col-md-6 my-2">
+            <label for="">{{"booking.start-date" | translate}}</label>
+            <input disabled type="text" class="form-control" [value]="bookingData.booking.startDate| date: 'short'" name="" id="">
+        </div>
+
+        <div class="col-md-6 my-2">
+            <label for="">{{"booking.end-date" | translate}}</label>
+            <input disabled type="text" class="form-control" [value]="bookingData.booking.endDate | date: 'short'" name="" id="">
+        </div>
+    </div>
+    <div class="w-25 ms-auto mt-5 text-end ">
+        <button routerLink="../../"  type="button" class="cancel w-75">{{"booking.cancel" | translate}}</button>
+    </div>
+
+
+
+</div>

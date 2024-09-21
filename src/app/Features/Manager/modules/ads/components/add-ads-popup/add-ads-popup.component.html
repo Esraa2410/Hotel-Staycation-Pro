@@ -1,0 +1,48 @@
+<section class="px-2">
+  <div class="d-flex justify-content-end mt-4 me-2" style="cursor: pointer;"><i class="fa-regular fa-circle-xmark fa-2xl text-danger"
+      (click)="onNoClick()"></i></div>
+  <div class="container p-4">
+    <h2 class=" text-secondary-color fs-4">Add new Ad</h2>
+    <form class="mt-2">
+      <div class="row g-4  ">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Room Number</mat-label>
+            <input type="text" matInput [formControl]="roomControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)"
+              [displayWith]="displayRoom">
+              <mat-option *ngFor="let room of filteredRooms | async" [value]="room">
+                {{ room.roomNumber }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label class="lable">Discount</mat-label>
+            <input [value]="data.discount" [(ngModel)]="data.discount" name="discount" type="number"
+              placeholder="Discount" class="" matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="data.isActive" [value]="data.isActive" name="isActive">
+              <mat-option [value]="true">
+                <span>Active</span>
+              </mat-option>
+              <mat-option [value]="false">
+                <span>Not Active</span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <hr class="text-muted">
+      <div class="btns  mt-4  text-end">
+        <button routerLink="/manager/ads/" class="cancel mx-4 " type="button" (click)="onNoClick()">Cancel</button>
+        <button class=" primary" [matDialogClose]="data" [mat-dialog-close]="data">Add</button>
+      </div>
+    </form>
+  </div>
+</section>

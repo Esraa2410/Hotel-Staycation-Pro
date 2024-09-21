@@ -1,0 +1,54 @@
+// .not-page{
+//   .not-btn{
+//       // background-color: #E2E5EB;
+//       transition: 0.4s;
+//   &:hover{
+//       // background-color: #b3c2e1 ;
+//   }
+//   i{
+//       transition: 0.4s;
+//   }
+//   &:hover i{
+//       transform: translateX(-5px);
+//   }
+// }
+// }
+.not-found {
+
+  .picture-not-found {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+  }
+
+  .page {
+    font-size: 32px;
+    font-weight: 400;
+    color: $primary-color;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 12rem;
+    justify-content: space-between;
+  }
+}
+
+
+
+@media screen and (max-width:1023px) {
+
+  .layer{
+      width: 110%;
+      height: 70%;
+  }
+}
+
+@media screen and (max-width:576px) {
+
+  .layer{
+      width: 150%;
+      height: 70%;
+  }
+}

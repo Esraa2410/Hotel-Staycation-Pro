@@ -1,0 +1,17 @@
+@import '../../../../../assets/styles/abstracts/text-color.scss';
+@import '../../../../../assets/styles/abstracts/bg-color.scss';
+
+@import '../../../../../assets/styles/components/button.scss';
+@import '../../../../../assets/styles/components/inputs.scss';
+
+@import '../../../../../assets/styles/layout/auth.scss';
+
+.photo{
+    background-image: url(../../../../../assets/images/register.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 1rem;
+}
+
+
+

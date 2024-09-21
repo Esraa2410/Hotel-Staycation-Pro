@@ -1,0 +1,31 @@
+@import '../abstracts/variables.scss';
+.input-group{
+    background-color:  $light-white-color;
+    padding: 5px 0px;
+
+ 
+    i{
+        color: #ABABAB
+    }; 
+}
+
+input{
+    background-color:  $light-white-color;
+    //padding: 14px 10px;
+    
+    border: none;
+
+    &:focus{
+        outline: none !important;
+        box-shadow: none !important;
+        background-color: transparent;
+    }
+
+    &::placeholder{
+        color: #8391A1 ;
+        font-size: 16px;
+        line-height: 27.5px;
+
+    }
+    
+}

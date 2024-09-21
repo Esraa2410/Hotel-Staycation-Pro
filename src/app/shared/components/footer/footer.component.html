@@ -1,0 +1,64 @@
+<section class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="content">
+                    <h2 routerLink="/guest/home">
+                        <span>Stay</span>cation{{lang=='en'? '.':''}}
+                    </h2>
+                    <p>
+                        {{"footer.description"|translate}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="content">
+                    <h2>
+                        {{"footer.for-beginners"|translate}}
+                    </h2>
+                   <ul class="m-0 p-0">
+                    <li class="mb-1"><a routerLink="/auth/register">{{"footer.new-account"|translate}}</a></li>
+                    <li class="mb-1"><a routerLink="/guest/explore">{{"footer.start-booking"|translate}}</a></li>
+                    <li class="mb-1"><a>{{"footer.use-payments"|translate}}</a></li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="content">
+                    <h2>
+                        {{"footer.explore-us" | translate}}
+                    </h2>
+                   <ul class="m-0 p-0">
+                    <li class="mb-1"><a>{{"footer.our-careers" | translate}}</a></li>
+                    <li class="mb-1"><a>{{"footer.privacy" | translate}}</a></li>
+                    <li class="mb-1"><a >{{"footer.terms-conditions" | translate}}</a></li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="content">
+                    <h2>
+                        {{"footer.contact-us" | translate}}
+                    </h2>
+                   <ul class="m-0 p-0">
+                    <li class="mb-1"><a  routerLink="/guest/contact-us">{{"footer.mail-support" | translate}}</a></li>
+                    <li class="mb-1"><a  routerLink="/guest/contact-us">{{"footer.phone" | translate}}</a></li>
+                    <li class="mb-1"><a routerLink="/guest/contact-us">{{"footer.location" | translate}}</a></li>
+                </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 mb-2">
+            <div class="col-md-12 text-center">
+                <div>
+                    <p>
+                        {{"footer.copyright" | translate}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,64 @@
+@import "../../../../../assets/styles/abstracts/variables.scss";
+
+@import "../../../../../assets/styles/abstracts/text-color.scss";
+@import "../../../../../assets/styles/components/button.scss";
+@import "../../../../../assets/styles/components/card.scss";
+
+.breadcrumb-item{
+  text-decoration: none;
+  color: $main-p;
+  cursor: pointer;
+}
+.breadcrumb-item-itedited::before{
+  float: right !important;
+ }
+
+h2{
+    color: $secondary-color;
+    font-size: 40px !important;
+    font-weight: 600;
+    font-family: 'Poppins' !important;
+    line-height: 1;
+  
+  }
+  h3{
+    color: $secondary-color;
+    font-size: 30px !important;
+    font-weight: 600;
+    font-family: 'Poppins' !important;
+    line-height: 1;
+  
+  }
+
+  .img-padding{
+    padding: 0!important;
+  }
+
+  .round-icon{
+    width:50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $primary-color;
+    color: white;
+  }
+
+  h4{
+    font-size: 20px;
+    font-weight: 500;
+    color: $secondary-color;
+  }
+
+  h4 span{
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  @media screen and (max-width:992px) {
+
+    .img-padding{
+        display: none;
+    }
+}

@@ -1,0 +1,293 @@
+
+@import "../../../../../assets/styles/abstracts/variables.scss";
+
+@import "../../../../../assets/styles/abstracts/text-color.scss";
+@import "../../../../../assets/styles/components/button.scss";
+@import "../../../../../assets/styles/components/card.scss";
+
+
+
+
+.star-container {
+  display: flex;
+ // justify-content: start;
+  align-items: center;
+}
+
+.star-container .fa-star {
+  color: gold;
+  font-size: 24px;
+  margin: 0 5px;
+}
+.breadcrumb-item-itedited::before{
+    float: right !important;
+   }
+h2{
+    color: $secondary-color;
+    font-size: 40px !important;
+    font-weight: 600;
+    font-family: 'Poppins' !important;
+    line-height: 1;
+  
+}
+.icon {
+  width: 4.21rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 27.44rem;
+  height: 25.66rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paragraph {
+  color: #b0b0b0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  color: $secondary-color;
+  &.h1 {
+    font-weight: 700;
+    font-size: 2.625rem;
+    line-height: 3.9375rem;
+  }
+  &.h2 {
+    font-size: 24px !important;
+    font-weight: 500;
+    line-height: 2.25rem;
+
+  }
+  &.h3,
+  h2 {
+    font-weight: 500;
+  }
+  &.h4 {
+    font-size: 32px;
+    line-height: 48px;
+  }
+}
+
+
+
+
+
+.imag_home {
+  width: 23.75rem;
+}
+
+.imag_home_border {
+  border: rgba(56, 56, 56,.2) solid 2px;
+
+}
+
+
+.imag-img_home {
+  position: relative;
+  top: -33px;
+  left: -35px;
+  border-radius: 80px 15px 15px 15px;
+  overflow: hidden;
+  width: 23.75rem;
+
+}
+
+
+
+
+
+// *section ads
+
+
+.big-card {
+  position: relative;
+ 
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.imgHeight1 {
+  height: 36rem;
+}
+
+.imgHeight2 {
+  height: 16rem;
+}
+
+.imag-captain {
+  color: #fff;
+  bottom: 15px;
+  left: 20px;
+  padding: 10px;
+  position: absolute;
+  border-radius: 5px;
+  transition: all .7s;
+  opacity: 1;
+  .title {
+    font-size: 23px;
+    line-height: 34px;
+    margin: 5px 0;
+  }
+  
+  .userName {
+    font-size: 18px;
+    line-height: 25.5px;
+
+  }
+}
+
+.imag-price {
+  background-color: $pink-color;
+  color: #fff;
+  top: 0;
+  right: 0;
+  padding: 10px 10px 4px 10px;
+  position: absolute;
+  border-radius: 0 16px 0 16px ;
+  transition: all .7s;
+  opacity: 1;
+}
+
+
+
+
+
+
+
+.imag-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background-color: rgba(19, 46, 95, 0.4);
+  top: 110%;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+  border-radius: 15px;
+  transition: all .7s;
+  opacity: 0;
+}
+
+.imag-icon i {
+  margin-right: 20px;
+  transform: scale(1.5);
+  font-size: 18px;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+.imag-icon .fav:hover {
+  color: red
+}
+.imag-icon .eye:hover {
+  color: $primary-color
+}
+
+.big-card:hover .imag-icon {
+  opacity: 1;
+  top: 0;
+}
+
+
+.card-sm {
+  position: relative;
+ 
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+
+
+
+.card-sm:hover .imag-icon {
+  opacity: 1;
+  top: 0;
+}
+
+
+.test-card{
+ 
+  border-radius: 80px 15px 15px 15px;
+  overflow: hidden;
+  width: 23.75rem;
+  height: 25.66rem;
+
+  margin: auto;
+
+
+}
+
+.add-button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add bottom shadow */
+  &:hover {
+    background-color: #fff;
+    color: $dark-blue;
+  }
+}
+
+.carousel-control-next-icon{
+  color: rgb(28, 52, 102) !important;
+  border-radius: 4px rgb(28, 52, 102) solid !important;
+}
+
+
+
+@media screen and (max-width:1199px) {
+  h4{
+    &.h4 {
+      font-size: 22px;
+      line-height: 38px;
+    }
+  }
+ 
+
+}
+
+
+@media screen and (max-width:992px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  &.h1 {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
+  
+
+
+}
+
+.input-group,.example-form-field{
+  width: 100% !important;
+}
+
+}
+
+
+
+

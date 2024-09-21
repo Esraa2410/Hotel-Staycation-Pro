@@ -1,0 +1,121 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="mt-2 mb-4 col-md-12">
+      <h2 class="m-0 p-0">{{headerText}}</h2>
+      <p class="m-0 p-0">{{headerPargraph}}</p>
+    </div>
+    <div class="col-md-12">
+      <mat-form-field appearance="outline" class="w-75">
+        <button mat-icon-button matPrefix>
+          <mat-icon>search</mat-icon>
+        </button>
+        <mat-label>{{"booking.search-room" | translate}}</mat-label>
+        <input matInput type="text" [placeholder]="'booking.search-room' | translate" #searchValue [(ngModel)]="search"
+          (keyup.enter)="filtetByRoomNumber(searchValue)" (keydown.backspace)="resetSearchInput()" />
+        <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearchInput()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <ng-container *ngIf=" sortedBookings.length == 0">
+      <table mat-table class="table table-striped">
+        <ng-container matColumnDef="Room number">
+          <th mat-header-cell *matHeaderCellDef> {{"booking.room-number" | translate}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell *matHeaderCellDef> {{"booking.price" | translate}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="Start date">
+          <th mat-header-cell *matHeaderCellDef> {{"booking.start-date" | translate}}
+          </th>
+
+        </ng-container>
+        <ng-container matColumnDef="End date">
+          <th mat-header-cell *matHeaderCellDef> {{"booking.end-date" | translate}} </th>
+        </ng-container>
+        <ng-container matColumnDef="Guest">
+          <th mat-header-cell *matHeaderCellDef> {{"booking.guest" | translate}}</th>
+        </ng-container>
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef> {{"booking.actions" | translate}}</th>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <app-no-data></app-no-data>
+    </ng-container>
+    <div class="col-md-12">
+      <ng-container *ngIf=" sortedBookings.length >0">
+        <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="sortedBookings"
+          class="table table-striped">
+          <ng-container matColumnDef="Room number">
+            <th mat-header-cell *matHeaderCellDef> {{"booking.room-number" | translate}}</th>
+            <td mat-cell *matCellDef="let element">
+              <div *ngIf="element.room!=null">
+                {{element.room.roomNumber}}
+              </div>
+              <div *ngIf="element.room==null">
+                no room number
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="price"> {{"booking.price" | translate}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Start date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Start date"> {{"booking.start-date" | translate}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.startDate | date: 'M/d/yy, h:mm a'}} </td>
+          </ng-container>
+          <ng-container matColumnDef="End date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="End date">{{"booking.end-date" | translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.endDate | date: 'M/d/yy, h:mm a'}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Guest">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Guest">{{"booking.guest" | translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.userName}}</td>
+          </ng-container>
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> {{"booking.actions" | translate}}</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu" class=" position-relative z-3"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class>
+                <button [routerLink]="['/manager/booking/veiw',element._id]" class="btn-hover" mat-menu-item
+                  type="button">
+                  <mat-icon class="text-primary-color">visibility</mat-icon>
+                  <span>{{"booking.view" | translate}}</span>
+                </button>
+                <button (click)="deleteThisItem(element._id,element.room.roomNumber)" mat-menu-item class="btn-hover"
+                  type="button">
+                  <mat-icon class="text-primary-color  ">delete</mat-icon>
+                  <span>{{"booking.delete" | translate}}</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+
+        <mat-paginator
+          [length]="totalCount"
+          [pageSize]="pageSize"
+          [pageIndex]="pageIndex"
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          (page)="changePage($event)"
+          aria-label="Select page">
+        </mat-paginator>
+      </ng-container>
+    </div>
+
+  </div>
+
+</div>

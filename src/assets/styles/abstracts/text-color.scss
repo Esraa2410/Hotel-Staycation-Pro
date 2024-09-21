@@ -1,0 +1,29 @@
+@import '../abstracts/variables.scss';
+
+.text-primary-color{
+    color: $primary-color;
+}
+
+.text-secondary-color{
+    color: $secondary-color;
+}
+.text-red-color{
+    color: $red-color;
+}
+.text-green-color{
+    color: $green-color;
+}
+.text-pink-color{
+    color: $pink-color;
+}
+.text-rate-color{
+    color: $rate-color;
+}
+
+.text-dark-black{
+    color: $dark-black;
+}
+
+.text-main-p{
+    color: $main-p;
+}

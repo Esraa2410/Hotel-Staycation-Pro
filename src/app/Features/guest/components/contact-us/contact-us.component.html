@@ -1,0 +1,82 @@
+<div class="container-fluid  p-5" >
+    <h2 class="text-center ">{{"contact.contact-us"|translate}}</h2>
+    <div class="row">
+        <div class="card-body p-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb " >
+                  <li class="breadcrumb-item"><a routerLink="/guest/home">{{"room-details.home"|translate}}</a></li>
+                  <li class="breadcrumb-item active " [class]="lang=='en'?'breadcrumb-item':'breadcrumb-item-itedited'" aria-current="page">{{"contact.contact-us"|translate}}</li>
+                </ol>
+              </nav>
+            <div class="row p-0 bg-light bg-contact align-items-center">
+                <div class="col-lg-6 p-5  ">
+                    <form [formGroup]="contactForm" (ngSubmit)="contact(contactForm)">
+                        <div class="row ">
+                            <div class="col-md-6 mb-4">
+                                <label for="">{{"contact.name"|translate}}</label>
+                                <input formControlName="name" class="form-control mt-2 " type="text" name="" id=""
+                                [placeholder]="'contact.name' | translate">
+                                <div *ngIf="contactForm.get('name')?.errors && contactForm.get('name')?.touched"
+                                    class="d-flex align-items-center mt-1">
+                                    <img src="./assets/images/invalid.png" width="22" height="22" alt="" class="me-1">
+                                    <p *ngIf="contactForm.get('name')?.getError('required')" class="m-0 text-danger ">
+                                      {{"contact.name-required"|translate}}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4 ">
+                                <label for="">{{"contact.email-address"|translate}}</label>
+                                <input formControlName="email" class="form-control mt-2 " type="email" name="" id=""
+                                [placeholder]="'contact.email-2' | translate">
+                                <div *ngIf="contactForm.get('email')?.errors && contactForm.get('email')?.touched"
+                                    class="d-flex align-items-center mt-1">
+                                    <img src="./assets/images/invalid.png" width="22" height="22" alt="" class="me-1">
+                                    <p *ngIf="contactForm.get('email')?.getError('required')" class="m-0 text-danger ">
+                                      {{"contact.email.required"|translate}}
+                                    </p>
+                                    <p *ngIf="contactForm.get('email')?.getError('email')" class="m-0 text-danger">
+                                      {{"contact.invalid-email"|translate}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <label for="">{{"contact.subject"|translate}}</label>
+                                <input formControlName="subject" class="form-control mt-2 " type="text" name=""
+                                    id=""  [placeholder]="'contact.subject' | translate">
+                                <div *ngIf="contactForm.get('subject')?.errors && contactForm.get('subject')?.touched"
+                                    class="d-flex align-items-center mt-1">
+                                    <img src="./assets/images/invalid.png" width="22" height="22" alt="" class="me-1">
+                                    <p *ngIf="contactForm.get('subject')?.getError('required')" class="m-0 text-danger ">
+                                      {{"contact.subject-required"|translate}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <label for="">{{"contact.message"|translate}}</label>
+                                <textarea formControlName="message" class="form-control mt-2 " name="" id=""
+                                [placeholder]="'contact.message' | translate" cols="15" rows="3"></textarea>
+                                <div *ngIf="contactForm.get('message')?.errors && contactForm.get('message')?.touched"
+                                    class="d-flex align-items-center mt-1">
+                                    <img src="./assets/images/invalid.png" width="22" height="22" alt="" class="me-1">
+                                    <p *ngIf="contactForm.get('message')?.getError('required')" class="m-0 text-danger ">
+                                      {{"contact.message-required"|translate}}</p>
+                                </div>
+
+                            </div>
+                            <div class="w-100">
+                                <button type="submit" [disabled]="contactForm.invalid"
+                                    class="primary w-100 ">{{"contact.send"|translate}}</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                </div>
+                <div class="col-lg-6 img-padding">
+                    <img class="w-100 h-100" src="../../../../../assets/images/contact-us-flatlay.jpg" alt="">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

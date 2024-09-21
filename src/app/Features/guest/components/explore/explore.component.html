@@ -1,0 +1,60 @@
+<section class="explore mt-4 " >
+    <div class="container ">
+      <div class="row">
+        <!--breadcurmb-->
+        <div class="col-md-12">
+            <h2 class="text-center">
+              {{"explore.explore-rooms"|translate}}
+            </h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb " >
+              <li class="breadcrumb-item"><a routerLink="/guest/home">{{"explore.home"|translate}}</a></li>
+              <li class="breadcrumb-item active" [class]="lang=='en'?'breadcrumb-item':'breadcrumb-item-itedited'" aria-current="page">{{"explore.explore"|translate}}</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <ng-container *ngIf="roomsRes.data.rooms .length >0">
+        <div class="row mb-5">
+            <div class=" col-md-6 col-lg-4 " *ngFor="let item of roomsRes.data.rooms">
+
+                <div  class=" card-sm mt-4 w-100" >
+                  <img [src]="item.images[0]" alt="" class="w-100 imgHeight2 rounded-4 ">
+                  <div class="imag-icon">
+                    <a *ngIf="!(loginToFav === 'user' )" (click)="openAuthDialog()"
+                      class=" text-decoration-none text-white"><i class="fa-solid fa-heart fav"></i></a>
+                    <a *ngIf="loginToFav === 'user' " class=" text-decoration-none text-white"
+                    (click)="saveRoomInFav(item._id)"><i class="fa-solid fa-heart fav"></i></a>
+                    <a class=" text-decoration-none text-white" [routerLink]="[ '/guest/room-details',item._id]"><i
+                        class="fa-solid fa-eye eye "></i></a>
+                  </div>
+                  <div class="imag-captain">
+                    <h6 class=" text-white title">{{item.roomNumber}}</h6>
+                    <h5 class=" text-white userName">{{item.createdBy.userName}}</h5>
+                  </div>
+                  <div class="imag-price px-5">
+                    <p class="text-white">$ <span class="h6 text-white fw-bolder">{{item.price}}</span>
+                      {{"home.per-night"|translate}}</p>
+                  </div>
+                </div>
+              </div>
+
+                <!--pagination-->
+            <mat-paginator
+            [length]="totalCount"
+            [pageSize]="size"
+            [pageIndex]="page"
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            (page)="changePage($event)"
+            aria-label="Select page">
+          </mat-paginator>
+          </div>
+      </ng-container>
+
+      </div></section>
+
+<section *ngIf="roomsRes.data.rooms .length ==0">
+  <app-no-data></app-no-data>
+
+</section>
+

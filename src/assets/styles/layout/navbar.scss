@@ -1,0 +1,32 @@
+@import '../abstracts/variables.scss';
+
+.navbar {
+  border-radius: 16px;
+  margin: 1rem 0rem;
+  padding: 0rem .5rem ;
+  background-color: $light-white-color;
+
+  .input-group{
+
+    border-radius: 16px;
+    padding: 6px 0;
+
+  input{
+    
+    border: none;
+
+    &:focus{
+        outline: none !important;
+        box-shadow: none !important;
+        background-color: transparent;
+    }
+  }
+}
+
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}

@@ -1,0 +1,146 @@
+@import '../abstracts/variables.scss';
+
+.auth{
+    h1{
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 39px;
+    }
+    h2{
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 45px;
+        color: black;
+        //margin-bottom: 30px
+    }
+    .text-p{
+        font-size: 16px;
+        line-height: 24px;
+        color: black;
+        span{
+            font-weight: 600;
+           // color: $secondary-color;
+           
+        }
+
+    }
+
+    label{
+        color: $secondary-color;
+        font-size: 16px;
+        line-height: 27.5px;
+       // margin-bottom: 5px;
+    }
+    .photo{
+        position: relative;
+        img{
+            border-radius: 15px;
+        }
+
+        .layer{
+            position: absolute;
+            bottom: 15%;
+            left: 15%;
+
+            h2{
+                font-weight: 600;
+                font-size: 40px;
+                line-height: 60px;
+                margin-bottom: 10px;
+                color: #FDFFFC;
+
+            }
+            p{
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 30px;
+                color: #FDFFFC;
+
+            }
+        }
+    
+    }
+   
+    // .photo{
+    //     height: 100vh;
+    // }
+    .scroll{
+        overflow-y: hidden;
+       
+        
+    }
+    .drop-zone{
+        width: 12.75rem;
+        height: 12.75rem;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 50%;
+        border: .5px dashed gray;
+        background-color:  #F7F7F7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .profile-image{
+            position: relative;
+            }
+            .to-change-image{
+            position: absolute;
+            top: 50%;
+            right:47%;
+            transform: translate(-50%, -50%);
+
+            border-radius: 5px;
+            color: transparent;
+            background-color:  transparent !important;
+            
+            button{
+                background-color:  transparent;
+                padding: 15px 10px;
+                border-radius: 15px;
+            }
+            }
+
+            .change-image{
+                position: absolute;
+                top: 50%;
+                right:45%;
+                transform: translate(-50%, -50%);
+    
+                border-radius: 5px;
+                color: transparent;
+                background-color:  transparent !important;
+                
+                button{
+                    background-color:  transparent;
+                    padding: 15px 10px;
+                    border-radius: 15px;
+                }
+                }
+    
+    }
+
+    @media screen and (max-width:1200px) {
+
+        .layer{
+            left: 5% !important;
+
+    
+            h2{
+                font-weight: 500 !important;
+                font-size: 40px  !important;
+                line-height: 60px !important;
+    
+            }
+        }
+
+     
+    }
+
+    @media screen and (max-width:768px) {
+
+        .fullImage{
+            display: none !important;
+        }
+    }

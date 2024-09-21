@@ -1,0 +1,29 @@
+@import '../../../../../assets/styles/abstracts/variables.scss';
+
+@import '../../../../../assets/styles/components/button.scss';
+
+
+
+h2{
+    color:$primary-color;
+}
+P{
+    color:$main-p;
+    font-size: 1rem;
+}
+h3{
+    color: $secondary-color;
+    font-size: 1.8rem;
+}
+
+.custom-stripe-element {
+    border: 1px solid rgba(0, 0, 0, 0.452);
+    border-radius: 4px;
+    padding: 16px;
+  }
+  
+  .custom-stripe-element .StripeElement {
+    width: 100%;
+    padding: 10px;
+  }
+  

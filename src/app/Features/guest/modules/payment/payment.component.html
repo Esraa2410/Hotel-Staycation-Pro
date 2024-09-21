@@ -1,0 +1,150 @@
+<div class="container text-center mb-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>
+          {{"payment.payment" | translate}}
+        </h2>
+        <p>
+          {{"payment.follow-instructions" | translate}}
+        </p>
+        </div>
+
+            <div class="col-md-12 mb-5">
+                <mat-card>
+                    <div class="p-2 mt-3">
+
+                        <mat-stepper labelPosition="bottom" #stepper >
+                            <mat-step >
+
+                                <ng-template matStepLabel>{{"payment.step-1" | translate}}</ng-template>
+                               <h3>
+                                {{"payment.summary" | translate}}
+                                 </h3>
+                                 <p class="mb-3">
+                                  {{"payment.description-1" | translate}}
+                                   <br> {{"payment.description-2" | translate}}
+                                 </p>
+                                 <div class="row ">
+                                    <div class="col-md-5 m-auto">
+                                        <mat-card class="p-4 mb-3">
+
+                                          <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="mb-0">{{"payment.room-number" | translate}}</p>
+                                            <p class="mb-0">{{bookingResp.data.booking.room.roomNumber}}</p>
+                                          </div>
+                                          <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="mb-0">{{"payment.start-date" | translate}}</p>
+                                            <p class="mb-0">{{bookingResp.data.booking.startDate|date:'dd-MM-yyyy'}}</p>
+                                          </div>
+
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <p class="mb-0">{{"payment.end-date" | translate}}</p>
+                                                <p class="mb-0">{{bookingResp.data.booking.endDate|date:'dd-MM-yyyy'}}</p>
+                                              </div>
+
+                                              <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <p class="mb-0">{{"payment.total-price" | translate}}</p>
+                                                <p class="mb-0">${{bookingResp.data.booking.totalPrice}}</p>
+                                              </div>
+                                         </mat-card>
+                                    </div>
+                                 </div>
+
+                                <div>
+                                  <button mat-button matStepperNext class="btn primary m-3">{{"payment.continue-book" | translate}}</button>
+                                </div>
+
+                            </mat-step>
+                            <mat-step [stepControl]="PaymentFormGroup" >
+                              <ng-template matStepLabel >{{"payment.step-2" | translate}} </ng-template>
+
+
+
+
+
+
+                                <ng-container *ngIf="!isBookingDone">
+
+                                <h3>
+                                  {{"payment.credit-card-info" | translate}}
+                                 </h3>
+                                 <div>
+                                    <img src="../../../../../assets/images/visa-light.png" alt="" class="me-2">
+
+                                    <img src="../../../../../assets/images/paypal.png" alt="" class="me-2">
+
+                                 </div>
+
+                                <div [formGroup]="checkoutForm" >
+
+                                  <div  class="row mt-3">
+                                   <div class="col-md-6 m-auto">
+                                     <mat-card class="p-4 mb-3">
+
+                                       <mat-form-field appearance="outline" >
+                                         <mat-label>{{"payment.name" | translate}}</mat-label>
+                                         <input matInput formControlName="name"
+
+                                         [placeholder]="'payment.enter-name' | translate"
+                                                required>
+                                       </mat-form-field>
+
+                                       <mat-form-field appearance="outline">
+                                         <mat-label>{{"payment.email" | translate}}</mat-label>
+                                         <input matInput formControlName="email"  type="email"
+                                         [placeholder]="'payment.enter-email' | translate"
+                                                required>
+                                       </mat-form-field>
+
+
+                                       <div class="custom-stripe-element"  >
+
+                                     <ngx-stripe-elements appearance="outline"
+                                       [stripe]="stripe"
+                                       [elementsOptions]="elementsOptions"
+                                     >
+                                     <ngx-stripe-card [options]="cardOptions" appearance="outline" ></ngx-stripe-card>
+                                   </ngx-stripe-elements>
+                                 </div>
+
+
+                                 </mat-card>
+                                 <button mat-button matStepperPrevious  class="btn cancel" >{{"payment.back" | translate}}</button>
+                                 <button mat-button  class=" btn primary m-3" type="submit" (click)="createTokenThenPay()">{{"payment.continue" | translate}}</button>
+                               </div>
+
+                               </div>
+                                  </div>
+                              </ng-container>
+                              <ng-container   *ngIf="isBookingDone" >
+
+                              <h3>{{"payment.completed" | translate}}</h3>
+                              <img src="../../../../../assets/images/payment.png">
+                              <p>
+                                {{"payment.done-description-1" | translate}}
+                              <br>
+                              {{"payment.done-description-2" | translate}}
+                              </p>
+                              <button mat-button routerLink="/guest/home" class="btn primary m-3">{{"payment.back-home" | translate}}</button>
+
+                                  </ng-container>
+
+                                  <ng-container *ngIf="!isBookingDone"
+                                  >
+
+                                </ng-container>
+
+                              </mat-step>
+                          </mat-stepper>
+                    </div>
+
+                  </mat-card>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+\

@@ -1,0 +1,62 @@
+@import '../abstracts/text-color.scss';
+@import '../abstracts/bg-color.scss';
+@import '../abstracts/variables.scss';
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+table {
+    background-color: $white-color !important;
+    .mat-mdc-header-row {
+        border-radius: 10px !important;
+        background-color:$table-header-bg-color !important;
+    }
+
+    th {
+        color: $table-header-color !important;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+        text-align: center;
+        padding:0 40px !important;
+
+        vertical-align: middle;
+     
+
+    }
+    td {
+        color: $table-body-color !important;
+        font-size: 14px;
+        vertical-align: middle !important;
+        text-align: center;
+    }
+}
+
+::ng-deep .mat-mdc-menu-panel{
+    background-color: $white-color !important;
+    border-radius: 1.2rem !important;
+    mat-icon{
+        color:$mat-icon-color !important ;
+    }
+    span{
+        color:$table-span-color !important
+    }
+}
+::ng-deep .mat-mdc-paginator{
+    background-color: $white-color !important;
+    color: $table-header-color !important;
+}
+::ng-deep .mat-mdc-paginator{
+    color: $table-header-color !important;
+  
+    
+}
+::ng-deep .mat-mdc-paginator-range-actions{
+    color: $table-header-color !important;
+}
+::ng-deep .mat-mdc-paginator-page-size-select{
+    color: $table-header-color !important;
+    border-radius:2px solid red !important;
+}

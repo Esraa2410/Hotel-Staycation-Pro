@@ -1,0 +1,29 @@
+<section class="change-pass p-4" [dir]="lang=='en'? 'ltr':'rtl'" [class]="lang=='ar' ?'lang-ar':''">
+  <div class="d-flex justify-content-end mt-3 me-1">
+    <i
+      class="fa-regular fa-circle-xmark fa-2xl text-danger"
+      (click)="onNoClick()"
+    ></i>
+  </div>
+
+  <div class="auth-card">
+    <div class="m-auto text-center">
+      <a class="popup-brand" ><span>Stay</span>cation</a>
+    </div>
+
+    <div class="mb-4 text-center py-3 pt-5">
+      <h1 class="text-secondary-color h3">{{"auth-popup.action-denied"|translate}}</h1>
+    </div>
+
+    <div class="mb-4  d-flex">
+      <p class="text-secondary-color px-1">{{"auth-popup.no-account"|translate}}</p>
+      <p class="text-secondary-color"><a    [routerLink]="[ '/auth/register']" (click)="onNoClick()">{{"auth-popup.register-here"|translate}}</a></p>
+    </div>
+
+    <div class="btns  mt-4 d-flex justify-content-between">
+      <button (click)="onNoClick()" class="cancel mx-4 " type="button">{{"auth-popup.cancel"|translate}}</button>
+      <button class="primary" [routerLink]="[ '/auth/login']" (click)="onNoClick()" >{{"auth-popup.login"|translate}}</button>
+    </div>
+
+  </div>
+</section>

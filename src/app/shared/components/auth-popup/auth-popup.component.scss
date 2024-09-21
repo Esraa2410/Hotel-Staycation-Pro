@@ -1,0 +1,15 @@
+@import '../../../../assets/styles/abstracts/text-color.scss';
+
+@import '../../../../assets/styles/components/inputs.scss';
+
+@import '../../../../assets/styles/components/button.scss';
+
+
+.popup-brand{
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 39px;
+  span{
+      color: $mat-icon-color;
+  }
+}

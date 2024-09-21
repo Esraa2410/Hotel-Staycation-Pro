@@ -1,0 +1,10 @@
+@import '../../../../../assets/styles/components/table.scss';
+
+.fa{
+    cursor: pointer;
+}
+
+::ng-deep .mat-sort-header-arrow {
+
+    opacity: unset !important;
+}

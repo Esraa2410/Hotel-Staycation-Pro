@@ -1,0 +1,21 @@
+@import '../abstracts/variables.scss';
+
+.bg-primary-color{
+    background-color: $primary-color;
+}
+
+.bg-secondary-color{
+    background-color: $secondary-color;
+}
+.bg-red-color{
+    background-color: $red-color;
+}
+.bg-green-color{
+    background-color: $green-color;
+}
+.bg-pink-color{
+    background-color: $pink-color;
+}
+.bg-rate-color{
+    background-color: $rate-color;
+}

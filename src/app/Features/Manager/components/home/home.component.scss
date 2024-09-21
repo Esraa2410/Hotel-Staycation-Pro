@@ -1,0 +1,21 @@
+@import '../../../../../assets/styles/abstracts/variables.scss';
+
+.fa-shopping-bag{
+    color: 
+    rgba(32, 63, 199, 1);
+    font-size: 25px;
+    
+}
+.item{
+    border-radius: 0.9rem;
+    color:#fff;
+    background-color: rgba(26, 27, 30, 1);
+}
+.circle{
+    border-radius: 50%;
+    
+    background-color: rgba(53, 80, 199, 0.2);
+}
+h3{
+    color:$light-gray-color ;
+}

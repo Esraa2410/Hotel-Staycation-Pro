@@ -1,0 +1,25 @@
+@import '../../../../assets/styles/abstracts/variables';
+
+@import '../../../../assets/styles/components/button.scss';
+
+
+h2{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(73, 73, 73, 1);
+}
+p{
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(73, 73, 73, 0.6);
+}
+/*button{
+    background-color: rgba(32, 63, 199, 1);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border:unset
+}*/
+.fa-regular{
+    cursor: pointer;
+}

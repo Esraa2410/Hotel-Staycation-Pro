@@ -1,0 +1,275 @@
+<section class="roomDetails mt-4 " *ngIf="roomRes">
+  <div class="container ">
+    <div class="row">
+      <!--breadcurmb-->
+      <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb " >
+            <li class="breadcrumb-item"><a routerLink="/guest/home">{{"room-details.home"|translate}}</a></li>
+            <li class="breadcrumb-item active" [class]="lang=='en'?'breadcrumb-item':'breadcrumb-item-itedited'" aria-current="page">{{"room-details.room-details"|translate}}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-lg-4  text-center">
+        <div class="roomNumer">
+          <h4 class="mb-1 p-1 "> {{roomRes.roomNumber}}</h4>
+          <p>{{"room-details.location"|translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <owl-carousel-o [options]="sliderOptions" dir="ltr">
+        <ng-container *ngFor="let item of roomRes?.images">
+          <ng-template carouselSlide [id]="roomRes._id">
+            <img height="300" [src]="item" alt="room photos">
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <div class="row mt-3 mb-5 ">
+      <div class="col-md-6">
+        <div class="paragraph p-2">
+          <p>
+            {{"room-details.description-1" | translate}}
+          </p>
+          <p>{{"room-details.description-2" | translate}}</p>
+          <p>{{"room-details.description-3" | translate}}</p>
+
+        </div>
+        <div class="">
+          <div *ngIf="roomRes.facilities.length>1">
+            <div class="row ">
+              <h5>{{"room-details.facilities" | translate}}</h5>
+              <div class="col-sm-3 m-1 ms-5 " *ngFor="let item of roomRes.facilities">
+                <div *ngIf="item.name=='Kitchen'"> <i class="fa-solid fa-kitchen-set"></i></div>
+                <div *ngIf="item.name=='Garage'"> <i class="fa-solid fa-square-parking"></i></div>
+                <div *ngIf="item.name=='Xbox'"> <i class="fa-solid fa-box"></i> </div>
+                <div *ngIf="item.name=='Royal suite'"> <i class="fa-solid fa-crown"></i> </div>
+                <div *ngIf="item.name=='Wifi' || item.name=='WIFI' "> <i class="fa-solid fa-wifi"></i></div>
+                <div *ngIf="item.name=='Mini fridge'"> <i class="fa-solid fa-road-bridge"></i> </div>
+                <div *ngIf="item.name=='Sea view'"> <i class="fa-solid fa-water"></i></div>
+                <div *ngIf="item.name=='coffe machine' || item.name=='Coffee maker'"> <i
+                    class="fa-solid fa-mug-hot"></i></div>
+                <div *ngIf="item.name=='Kids area'"> <i class="fa-solid fa-child-reaching"></i> </div>
+                <div *ngIf="item.name=='Pets allowed'"> <i class="fa-solid fa-shield-cat"></i></div>
+                <div *ngIf="item.name=='Lounges'"> <i class="fa-solid fa-dumbbell"></i></div>
+                <div *ngIf="item.name=='Dining & Restaurants'"> <i class="fa-solid fa-utensils"></i></div>
+                <div *ngIf="item.name=='Buffet'"> <i class="fa-solid fa-bowl-rice"></i></div>
+                <div *ngIf="item.name=='air conditioning'"> <i class="fa-solid fa-fan"></i></div>
+                <div *ngIf="item.name!=='Buffet' && item.name!=='Dining & Restaurants' && item.name!=='Mini fridge' &&
+                item.name!=='Kitchen' && item.name!=='Garage' && item.name!=='Xbox' && item.name!=='Royal suite' && item.name!=='WIFI' &&
+                item.name!=='Coffee maker' && item.name!=='Sea view' && item.name!=='Lounges' && item.name!=='Wifi' &&
+                item.name!=='Pets allowed' && item.name!=='Kids area' && item.name!=='coffe machine' && item.name!=='air conditioning'">
+                 <i class="fa-solid fa-gift"></i></div>
+                {{item.name}}
+              </div>
+            </div>
+          </div>
+          <div *ngIf="roomRes.facilities.length==0">
+
+            <h5>{{"room-details.no-facilities" | translate}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-subtitle class="subTitle mb-3">{{"room-details.start-booking" | translate}}</mat-card-subtitle>
+            <mat-card-title class="title mb-2"><span class="price">${{roomRes.price}}</span> {{ "room-details.per-night" | translate }}</mat-card-title>
+            <mat-card-subtitle><span class="discount">{{ "room-details.discount" | translate }} ${{roomRes.discount}} {{ "room-details.off" | translate }}</span></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="mt-5">
+            <h5>{{ "room-details.pick-date" | translate }}</h5>
+            <mat-form-field class="example-form-field w-100" appearance="outline">
+              <mat-label>{{ "room-details.date" | translate }}</mat-label>
+              <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker"
+                [comparisonStart]="campaignOne.value.start" [comparisonEnd]="campaignOne.value.end">
+                <input matStartDate placeholder="Start date" formControlName="start">
+                <input matEndDate placeholder="End date" formControlName="end">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+              <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+            </mat-form-field>
+            <p>{{ "room-details.you-will-pay" | translate }} <span class="card-span">${{ getDiscountedPrice(roomRes.price, roomRes.discount) }}</span>  {{ "room-details.per" | translate }}
+              <span class="card-span">{{roomRes.capacity}} {{ "room-details.person" | translate }}</span>
+            </p>
+            <div class="d-flex align-items-center justify-content-center">
+              <button class="primary" (click)="createBooking( getDiscountedPrice(roomRes.price, roomRes.discount) )">{{ "room-details.continue-booking" | translate }}</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+     <!-- review and rate  Section -->
+     <div class="row mt-3 mb-5 ">
+    <div class="col-md-12 px-5 py-3 mb-5 ">
+      <h5 class="mb-4">{{ "room-details.comments-reviews" | translate }}</h5>
+      <mat-accordion class="example-headers-align " multi>
+        <mat-expansion-panel >
+          <mat-expansion-panel-header  (click)="preventExpansion($event)">
+            <mat-panel-title>{{ "room-details.comments" | translate }}</mat-panel-title>
+            <mat-panel-description>{{ "room-details.see-all-comments" | translate }}<mat-icon>chat</mat-icon></mat-panel-description>
+          </mat-expansion-panel-header>
+              <ng-container *ngIf="RoomComment.length >0">
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="card  mb-3" *ngFor=" let comment of RoomComment">
+                      <div class="card-body p-4">
+                        <div class="row">
+                          <div class="col ">
+                            <div class="d-flex flex-start align-items-center">
+                              <img class="rounded-circle shadow-1-strong mx-3"
+                                [src]="comment.user.profileImage"
+                                 alt="avatar" width="65"
+                                height="65" />
+                              <div class="flex-grow-1 flex-shrink-1">
+                                <div>
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <p class="mb-1 text-muted">
+                                     {{comment.user.userName}} <span class="small">{{comment.createdAt |date}}</span>
+                                    </p>
+                                  </div>
+                                  <p class="small mb-0">
+                                   {{comment.comment}}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div *ngIf="comment.user._id === userId"   class="col-lg-3 col-md-5 my-2 p-0  d-flex justify-content-between align-items-center">
+                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                            class=" position-relative z-3"
+                            aria-label="Example icon-button with a menu">
+                            <mat-icon>more_horiz</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu" class>
+                            <button (click)="updateComment(comment._id , comment.comment )" class="btn-hover" mat-menu-item>
+                              <mat-icon class="text-primary-color  ">edit_square</mat-icon>
+                              <span>{{ "room-details.update" | translate }}</span>
+                            </button>
+                            <button (click)="deleteComment( comment._id  ,comment.comment) " mat-menu-item class="btn-hover" type="button">
+                              <mat-icon class="text-primary-color  ">delete</mat-icon>
+                              <span>{{ "room-details.delete" | translate }}</span>
+                            </button>
+                          </mat-menu>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="RoomComment.length == 0">
+                <p>{{ "room-details.no-comments-yet" | translate }}</p>
+              </ng-container>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header  (click)="preventExpansion($event)">
+            <mat-panel-title>{{ "room-details.reviews" | translate }}</mat-panel-title>
+            <mat-panel-description>{{ "room-details.see-all-reviews" | translate }}<mat-icon>reviews</mat-icon></mat-panel-description>
+
+          </mat-expansion-panel-header>
+<!--           <ng-container *ngIf="reviewsResponse.roomReviews.length>0">
+            <div class="row d-flex align-items-center"> -->
+
+          <ng-container *ngIf="roomReviews.length>0">
+            <div class="row ">
+
+              <div class="col-md-12 ">
+                <div class="card mb-3" *ngFor=" let review of roomReviews">
+                  <div class="card-body p-4 ">
+                    <div class="row">
+<!--                       <div class="col-md-9  ">
+                        <div class="d-flex flex-start">
+                          <img class="rounded-circle shadow-1-strong me-3" -->
+                      <div class="col ">
+                        <div class="d-flex flex-start align-items-center">
+                          <img class="rounded-circle shadow-1-strong mx-3"
+                            [src]="review.user.profileImage"
+                             alt="avatar" width="65"
+                            height="65" />
+                          <div class="flex-grow-1 flex-shrink-1">
+                            <div>
+                              <div class="d-flex justify-content-between align-items-center">
+                                <p class="mb-1 text-muted">
+                                 {{review.user.userName}} <span class="small">{{review.createdAt |date}}</span>
+                                </p>
+                              </div>
+                              <p class="small mb-2">
+                               {{review.review}}
+                              </p>
+                              <div class="">
+                                <star-rating-control [starType]="'svg'"  class="star filled ms-5"
+                                [numOfStars]="review.rating"></star-rating-control>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="roomReviews.length == 0">
+            <p>{{ "room-details.no-reviews-yet" | translate }}</p>
+          </ng-container>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    </div>
+    <!-- Rate Section -->
+    <div class="col-md-12 px-5 py-3 mb-5 rate-card h-auto">
+      <div class="row ">
+        <div class="col-lg-6 p-3 ">
+          <form [formGroup]="reviewForm" (ngSubmit)="onAddReview(reviewForm)">
+            <div class="" >
+              <h3 class="mb-1">{{ "room-details.rate" | translate }}</h3>
+              <div class="d-flex justify-content-start align-items-center  ">
+                <star-rating-control formControlName="rating" [starType]="'svg'" [rating]="rating"
+                  [numOfStars]="5"></star-rating-control>
+              </div>
+            </div>
+            <div class=" " >
+              <div class="my-3">
+                <label for="message" class="my-4">{{ "room-details.message" | translate }}</label>
+                <textarea formControlName="review" name="message" rows="5" id="message" class="form-control"></textarea>
+              </div>
+              <div class="w-100  text-end ">
+              <button type="submit" [disabled]="reviewForm.invalid" class="primary w-25 mt-3">{{ "room-details.rate" | translate }}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Add Your Comment section -->
+        <div class="col-lg-6 p-3 ">
+          <form [formGroup]="commentForm" (ngSubmit)="onAddComment(commentForm.value)">
+            <div class="" >
+              <h3 class="mb-1">{{ "room-details.add-comment" | translate }}</h3>
+              <div class="d-flex justify-content-start align-items-center  opacity-0">
+                <star-rating-control  [starType]="'svg'" [rating]="rating"
+                  [numOfStars]="5"></star-rating-control>
+              </div>
+            </div>
+            <div class=" " >
+              <div class="my-3">
+                <label for="comment" class="my-4">{{ "room-details.comment" | translate }}</label>
+                <textarea formControlName="comment" name="message" rows="5" id="message"
+                  class="form-control"></textarea>
+              </div>
+              <div class="w-100  text-end ">
+<!--                 <button type="submit" [disabled]="commentForm.invalid" class="primary w-25 mt-3 ">Send</button> -->
+                <button type="submit" [disabled]="commentForm.invalid"  class="primary w-25 mt-3 ">{{ "room-details.send" | translate }}</button>
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

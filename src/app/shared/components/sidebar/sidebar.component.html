@@ -1,0 +1,23 @@
+<section class="sidebar vh-100 ">
+    <div class="container">
+        <div class="row">
+            <div class="text-light toggle" [ngClass]="{'text-center': isToggle , 
+            'text-end': !isToggle }" (click)="toggleSidebar()">
+                <i *ngIf="isToggle " class="fa fa-bars" aria-hidden="true"></i>
+                <i *ngIf="!isToggle " class="fa fa-xmark" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-12 mt-5">
+                <ul class="p-1">
+                    <ng-container *ngFor="let item of menu">
+                        <li class="mb-2 p-2" routerLinkActive="active">
+                            <a [routerLink]="item.link" class="mb-2 d-flex align-items-center " [class]="isToggle?'justify-content-center':'' ">
+                                <span><i [class]="item.icon" aria-hidden="true"></i></span>
+                                <span class="text" [ngClass]="{'d-none':isToggle}">{{item.text}}</span>
+                            </a>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

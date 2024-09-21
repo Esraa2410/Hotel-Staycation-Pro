@@ -1,0 +1,124 @@
+<section class="py-4  ">
+  <div class="container">
+    <h2 class=" text-secondary-color">{{headerName}}</h2>
+    <form [formGroup]="addEditRoomForm" (ngSubmit)="addEditRoom()" class="mt-1">
+      <div class="row g-4  ">
+        <div class="col-md-12" *ngIf="viewMode">
+          <owl-carousel-o [options]="sliderOptions">
+            <ng-container *ngFor="let item of roomRes.data.room.images">
+              <ng-template carouselSlide [id]="roomRes.data.room._id">
+                <img height="300" [src]="item" alt="room photos">
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+        <div class="col-md-12">
+          <label for="roomNumber">Room Number</label>
+          <div class="input-group">
+            <input formControlName="roomNumber" type="text" class="form-control w-100" 
+              id="roomNumber" aria-label="Username" aria-describedby="basic-addon1" />
+          </div>
+          <div *ngIf="
+                    addEditRoomForm.get('roomNumber')?.errors &&
+                    addEditRoomForm.get('roomNumber')?.touched
+                  " class="d-flex align-items-center mt-1">
+            <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+            <p class="m-0 text-danger">
+              Room number is required
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="price">Price</label>
+          <div class="input-group">
+            <input formControlName="price" type="number" class="form-control w-100"  id="price"
+              aria-label="Username" aria-describedby="basic-addon1" />
+          </div>
+          <div *ngIf="
+                    addEditRoomForm.get('price')?.errors &&
+                    addEditRoomForm.get('price')?.touched
+                  " class="d-flex align-items-center mt-1">
+            <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+            <p class="m-0 text-danger">
+              Price is required
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="capacity">Capacity</label>
+          <div class="input-group">
+            <input formControlName="capacity" type="number" class="form-control w-100" 
+              id="capacity" aria-label="Username" aria-describedby="basic-addon1" />
+          </div>
+          <div *ngIf="
+                    addEditRoomForm.get('capacity')?.errors &&
+                    addEditRoomForm.get('capacity')?.touched
+                  " class="d-flex align-items-center mt-1">
+            <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+            <p class="m-0 text-danger">
+              Capacity is required
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="discount">Discount</label>
+          <div class="input-group">
+            <input formControlName="discount" type="number" class="form-control w-100" 
+              id="discount" aria-label="Username" aria-describedby="basic-addon1" />
+          </div>
+          <div *ngIf="
+                    addEditRoomForm.get('discount')?.errors &&
+                    addEditRoomForm.get('discount')?.touched
+                  " class="d-flex align-items-center mt-1">
+            <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+            <p class="m-0 text-danger">
+              Discount is required
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="">Facilities</label>
+          <mat-form-field class="w-100  ">
+            <mat-label>{{ (roomID && roomRes.data.room.facilities.length==0)?'No facilities':'Facilities'}}</mat-label>
+            <mat-select multiple formControlName="facilities">
+              <ng-container>
+                <mat-option *ngFor="let item of faciliyRes.data.facilities"
+                  [value]="item._id">{{item.name}}</mat-option>
+                <ng-container *ngIf="roomID">
+                  <mat-option *ngFor="let item of roomRes.data.room.facilities"
+                    [value]="item._id">{{item.name}}</mat-option>
+                </ng-container>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-12" *ngIf="!viewMode">
+          <ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label>Drop files here or click to upload</ngx-dropzone-label>
+            <!-- Display existing images -->
+            <ngx-dropzone-image-preview *ngFor="let f of existingImages" [file]="f" [removable]="true"
+              ngProjectAs="ngx-dropzone-image-preview">
+              <button ngxDropzoneRemove (click)="onRemove(f, true)">Remove</button>
+            </ngx-dropzone-image-preview>
+            <!-- Display new files -->
+            <ngx-dropzone-image-preview *ngFor="let f of newFiles" [file]="f" [removable]="true">
+              <button ngxDropzoneRemove (click)="onRemove(f, false)">Remove</button>
+            </ngx-dropzone-image-preview>
+          </ngx-dropzone>
+        </div>
+      </div>
+
+      <div class="btns  mt-4  text-end">
+        <button routerLink="/manager/rooms/" class="cancel mx-4 " type="button">Cancel</button>
+        <button *ngIf="!viewMode" class="primary " [disabled]="addEditRoomForm.invalid">Save</button>
+      </div>
+    </form>
+
+  </div>
+</section>

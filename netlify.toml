@@ -1,0 +1,7 @@
+[build]
+  base = "/"
+  publish = "dist/booking-pro"
+  command = "npm install --legacy-peer-deps && npm run build"
+
+[context.production.environment]
+  NODE_VERSION = "16.0.0"

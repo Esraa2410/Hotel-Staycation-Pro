@@ -1,0 +1,22 @@
+@import '../../../../assets/styles/abstracts/text-color.scss';
+@import '../../../../assets/styles/components/button.scss';
+@import '../../../../assets/styles/components/inputs.scss';
+
+.text-primary-color {
+  color: #203FC7 !important;
+}
+
+
+section {
+    .headerContent {
+      * {
+        color: #0E382F;
+      }
+  
+      h3 {
+        font-weight: bold;
+      }
+    }
+  
+  }
+  

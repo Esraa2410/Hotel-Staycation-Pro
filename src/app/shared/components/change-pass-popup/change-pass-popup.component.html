@@ -1,0 +1,98 @@
+
+
+<section class="change-pass p-4" [dir]="lang=='en'? 'ltr':'rtl'"  [class]="lang=='ar' ?'lang-ar':''">
+
+    <div class="d-flex justify-content-end mt-3 me-1"><i class="fa-regular fa-circle-xmark fa-2xl text-danger" (click)="onNoClick()"></i></div>
+
+
+                <div class="auth-card">
+                    <div class=" m-auto  text-center">
+                        <img src="./assets/img/logo.svg" class="w-50" alt="">
+                    </div>
+
+                    <div class="mb-4">
+                        <h1 class="text-secondary-color">{{"auth.change-password.change-your-password"|translate}}</h1>
+                        <p>{{"auth.change-password.details"|translate}}</p>
+                    </div>
+
+
+
+                    <form [formGroup]="changePassForm"  (ngSubmit)="changePassword(changePassForm)">
+
+                      <div class="input-group mt-3 d-flex align-items-center ">
+                        <span class="input-group-text lock" id="basic-addon1">
+                            <i class="fa-solid fa-lock fs-5 "></i>
+                        </span>
+                        <input formControlName="oldPassword" [type]="hide? 'password':'text'" class="form-control"  [placeholder]="'auth.change-password.old-password' | translate" aria-label="Username" aria-describedby="basic-addon1">
+                        <span>
+                            <i (click)="hide=!hide" class="fa-regular  fs-5 pe-3 hide" [class]="hide? 'fa-eye-slash':'fa-eye' "></i>
+                        </span>
+                    </div>
+
+
+                    <div *ngIf="changePassForm.get('oldPassword')?.errors && changePassForm.get('oldPassword')?.touched" class="d-flex align-items-center mt-1">
+                        <img                    src="./assets/images/invalid.png"
+                            width="22" height="22" alt="" class="mx-2">
+                        <p *ngIf="changePassForm.get('oldPassword')?.getError('required')" class="text-danger m-0">{{"auth.change-password.password-required"|translate}}</p>
+                        <p *ngIf="changePassForm.get('oldPassword')?.getError('pattern')" class="text-danger m-0">{{"auth.change-password.invalid-password"|translate}}</p>
+                    </div>
+
+
+
+
+                          <div class="input-group mt-3 d-flex align-items-center ">
+                            <span class="input-group-text lock" id="basic-addon1">
+                                <i class="fa-solid fa-lock fs-5 "></i>
+                            </span>
+                            <input formControlName="newPassword" [type]="hideNew? 'password':'text'" class="form-control"  [placeholder]="'auth.change-password.new-password' | translate" aria-label="Username" aria-describedby="basic-addon1">
+                            <span>
+                                <i (click)="hideNew=!hideNew" class="fa-regular  fs-5 pe-3 hide" [class]="hideNew? 'fa-eye-slash':'fa-eye' "></i>
+                            </span>
+                        </div>
+
+                        <div *ngIf="changePassForm.get('newPassword')?.errors && changePassForm.get('newPassword')?.touched" class="d-flex align-items-center mt-1">
+                            <img                       src="./assets/images/invalid.png"
+                               width="22" height="22" alt="" class="mx-2">
+                            <p *ngIf="changePassForm.get('newPassword')?.getError('required')" class="text-danger m-0">{{"auth.change-password.password-required"|translate}}</p>
+                            <p *ngIf="changePassForm.get('newPassword')?.getError('pattern')" class="text-danger m-0">{{"auth.change-password.password-error"|translate}}</p>
+                        </div>
+
+
+                        <div class="input-group mt-3 d-flex align-items-center ">
+                          <span class="input-group-text lock" id="basic-addon1">
+                              <i class="fa-solid fa-lock fs-5"></i>
+                          </span>
+                          <input formControlName="confirmPassword" [type]="hideConfirmPass? 'password':'text'" class="form-control"  [placeholder]="'auth.change-password.confirm-new-password' | translate" aria-label="Username" aria-describedby="basic-addon1">
+                          <span>
+                              <i (click)="hideConfirmPass=!hideConfirmPass" class="fa-regular  fs-5 pe-3 hide" [class]="hideConfirmPass? 'fa-eye-slash':'fa-eye' "></i>
+                          </span>
+                      </div>
+
+                      <div *ngIf="changePassForm.get('confirmPassword')?.errors && changePassForm.get('confirmPassword')?.touched" class="small d-flex align-items-center mt-1">
+                          <img                       src="./assets/images/invalid.png"
+                          width="22" height="22" alt="" class="mx-2">
+                          <p *ngIf="changePassForm.get('confirmPassword')?.getError('required')" class="text-danger m-0">{{"auth.change-password.confirm-new-password"|translate}}</p>
+                          <p *ngIf="changePassForm.get('confirmPassword')?.value!=''&&changePassForm.get('confirmPassword')?.getError('compare')" class="text-danger m-0">{{"auth.change-password.password-match"|translate}}</p>
+                      </div>
+
+
+
+
+                          <button [disabled]="changePassForm.invalid" class="primary w-100 mt-4">{{"auth.change-password.change-password"|translate}}</button>
+
+
+
+
+                    </form>
+
+
+
+
+
+
+                </div>
+
+
+
+
+  </section>

@@ -1,0 +1,146 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!--header-->
+    <app-shared-header [headerBtnText]="btnText" [headerMainText]="headerText"
+      [headerPargraph]="headerPargraph"
+      (addClicked)="addFacility()"
+      ></app-shared-header>
+
+    <!--search and filter-->
+    <div class="col-md-12">
+
+      <mat-form-field appearance="outline" class="w-75">
+        <button mat-icon-button matPrefix>
+          <mat-icon>search</mat-icon>
+        </button>
+        <mat-label>Search by facility name</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Search"
+          #searchValue
+          [(ngModel)]="search"
+          (keyup.enter)="filtetByName(searchValue)" (keydown.backspace)="resetSearcgInput()" 
+         />
+        <button 
+        *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearcgInput()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      
+       
+
+    </div>
+    <!--table headers -->
+    <ng-container *ngIf=" sortedFacilities.length == 0">
+      <table mat-table class="table table-striped">
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+        </ng-container>
+
+        <!-- Created by Column -->
+        <ng-container matColumnDef="Created by">
+          <th mat-header-cell *matHeaderCellDef> Created by</th>
+        </ng-container>
+        <!-- 'Created at Column -->
+        <ng-container matColumnDef="Created at">
+          <th mat-header-cell *matHeaderCellDef> Created at
+          </th>
+
+        </ng-container>
+
+        <!-- Updated at Column -->
+        <ng-container matColumnDef="Updated at">
+          <th mat-header-cell *matHeaderCellDef> Updated at </th>
+
+        </ng-container>
+        <!--Actions-->
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef> Actions</th>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <app-no-data></app-no-data>
+    </ng-container>
+    <div class="col-md-12">
+      <ng-container *ngIf=" sortedFacilities.length >0">
+        <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="sortedFacilities" class="table table-striped">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Created by Column -->
+        <ng-container matColumnDef="Created by">
+          <th mat-header-cell *matHeaderCellDef> Created by</th>
+            <td mat-cell *matCellDef="let element">
+{{element.createdBy.userName}}
+             
+            </td>
+          </ng-container>
+
+          <!-- 'Created at Column -->
+          <ng-container matColumnDef="Created at">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="createdAt"> Created at
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'short'}} </td>
+          </ng-container>
+
+                <!-- Updated at Column -->
+        <ng-container matColumnDef="Updated at">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="updatedAt"> Updated at </th>
+            <td mat-cell *matCellDef="let element"> {{element.updatedAt | date: 'short'}} </td>
+          </ng-container>
+          <!--Actions-->
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu"
+                class=" position-relative z-3"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class>
+                <button  (click)="editOrView(element._id,element.name,false)" class="btn-hover" mat-menu-item type="button">
+                  <mat-icon class="text-primary-color">visibility</mat-icon>
+                  <span>View</span>
+                </button>
+                <button  (click)="editOrView(element._id,element.name,true)" class="btn-hover" mat-menu-item>
+                  <mat-icon class="text-primary-color  ">edit_square</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button (click)="willBeDeleted($event)"  mat-menu-item class="btn-hover" type="button">
+                  <mat-icon class="text-primary-color  ">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <!--pagination-->
+        <mat-paginator
+          [length]="totalCount"
+          [pageSize]="pageSize"
+          [pageIndex]="pageIndex"
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          (page)="changePage($event)"
+          aria-label="Select page">
+        </mat-paginator>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+<section class="bg-white p-3" [dir]="lang=='en'? 'ltr':'rtl'"  [class]="lang=='ar' ?'lang-ar':''">
+    <div class="d-flex justify-content-end mt-3 me-1"><i class="fa-regular fa-circle-xmark fa-2xl text-danger" (click)="_DialogRef.close()"></i></div>
+    <div class="d-flex justify-content-center mt-5"><img src="./assets/images/Email.svg" alt=""></div>
+    <h2 class="text-center mt-5" >{{"delete.delete.this"|translate}} {{data.comp}}?</h2>
+    <p class="text-center">{{"delete.are-you-sure"|translate}} <span class="fw-semibold">{{data.name}} {{"delete.question"|translate}}</span> {{"delete.click-delete"|translate}}</p>
+   <div class="d-flex justify-content-between align-items-center mt-5">
+    <button (click)="_DialogRef.close()" class="cancel     rounded-2" >{{"delete.cancel"|translate}}</button>
+    <button class="delete     rounded-2" [mat-dialog-close]="data.id">{{"delete.delete"|translate}}</button>
+
+
+
+   </div>
+</section>
+

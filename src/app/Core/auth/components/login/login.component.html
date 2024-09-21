@@ -1,0 +1,118 @@
+<section class="auth">
+
+        <div class="row    g-4 ">
+            <div class="col-md-6    ">
+
+           <div class="d-flex flex-column align-items-start  vh-100">
+               <h1 class=" text-primary-color p-3 ">Stay<span class="text-secondary-color">cation.</span> </h1>
+
+               <div class="w-75  m-auto">
+
+
+               <div>
+                <h2 class="mb-3">{{"auth.login.sign-in"|translate}}</h2>
+                <p class="text-p">{{"auth.login.no-account"|translate}}</p>
+                <p class="text-p">{{"auth.login.you-can"|translate}}  <span  class="text-red-color"
+                     type="button" routerLink="/auth/register"> &nbsp;&nbsp;{{"auth.login.register-here"|translate}}</span> </p>
+               </div >
+
+                    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)" class="mt-4">
+
+                        <div class="i d-flex flex-column">
+
+                            <label for="email" class="text-secondary-color">{{"auth.login.email"|translate}}</label>
+
+                            <div class="input-group ">
+                                <input formControlName="email" type="email" class="form-control w-100 p-2"  [placeholder]="'auth.type-here' | translate" id="email" aria-label="Username" aria-describedby="basic-addon1">
+
+
+                            </div>
+                          </div>
+
+                          <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="d-flex align-items-center mt-1">
+                            <img src="./assets/images/invalid.png" width="22" height="22" alt="" class="mx-2">
+                            <p *ngIf="loginForm.get('email')?.getError('required')" class="m-0 text-danger ">{{"auth.login.email-required"|translate}}</p>
+                            <p *ngIf="loginForm.get('email')?.getError('email')" class="m-0 text-danger">{{"auth.login.invalid-email"|translate}}</p>
+                          </div>
+
+                          <div class=" mt-3 d-flex flex-column ">
+                            <label for="password" class="mb-2" >{{"auth.login.password"|translate}}</label>
+
+                            <div class="input-group d-flex align-items-center">
+                                <input formControlName="password"
+                                 [type]="hide? 'password':'text'" class="form-control p-2"  [placeholder]="'auth.type-here' | translate" id="password" aria-label="Username" aria-describedby="basic-addon1">
+                            <span>
+                                <i (click)="hide=!hide" class="fa-regular  fs-5 pe-3 hide" [class]="hide? 'fa-eye-slash':'fa-eye' "></i>
+                            </span>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="d-flex align-items-center mt-1">
+                            <img src="./assets/images/invalid.png" width="22" height="22" alt="" class="mx-2">
+                            <p *ngIf="loginForm.get('password')?.getError('required')" class="text-danger m-0">{{"auth.login.password-required"|translate}}</p>
+                            <p *ngIf="loginForm.get('password')?.getError('pattern')" class="text-danger m-0">{{"auth.login.invalid-password"|translate}}</p>
+                        </div>
+
+                          <div class=" mt-2 text-end">
+                            <a routerLink="/auth/forgot" class="text-muted " >{{"auth.login.forgot-password"|translate}}</a>
+                          </div>
+
+                          <button [disabled]="loginForm.invalid" class="primary w-100 mt-4 ">{{"auth.login.login"|translate}}</button>
+
+
+
+                          <div class="signIn-options d-flex flex-column align-items-end pt-3">
+                            <!-- 
+                            <asl-google-signin-button   type='standard' shape="circle" size='medium' ></asl-google-signin-button>
+
+                           
+                            <div class="fb-login-button rounded-circle mt-2" c (click)="signInWithFB()" data-width="240px" data-size="medium" data-button-type="login_with" data-use-continue-as="false" data-auto-logout-link="true">
+                          </div> 
+                           -->
+                          </div>
+
+                    </form>
+ 
+                    <hr>
+
+                   <!--  <div *ngIf="!_AuthService.isAuthenticated()">
+                     
+
+                      <button (click)="signInWithGoogle()">Sign in with Google</button>
+                      <button (click)="signInWithFB()">Sign in with Facebook</button>
+                    </div>---> 
+                    <div *ngIf="_AuthService.isAuthenticated()">
+                      <h2>Welcome {{ _AuthService.getUser()?.name }}</h2>
+                    </div>
+
+
+                </div>
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <div class="col-md-6 fullImage">
+                <div class="photo vh-100 py-3">
+                    <img src="../../../../../assets/images/login.jpeg" class="w-100 h-100 " alt="">
+
+                    <div class="layer ">
+                        <h2>{{"auth.login.sign-in-roamhome"|translate}}</h2>
+                        <p>{{"auth.login.home-unique"|translate}}</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+</section>

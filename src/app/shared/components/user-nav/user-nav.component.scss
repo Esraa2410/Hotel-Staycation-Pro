@@ -1,0 +1,34 @@
+@import '../../../../assets/styles/abstracts/variables.scss';
+@import '../../../../assets/styles/components/button.scss';
+
+.navbar-brand{
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 39px;
+    span{
+        color: $mat-icon-color;
+    }
+}
+.notLoged ,.primary{
+    padding: 8px 18px !important;
+}
+.nav-link{
+    font-size: 17px;
+    line-height: 25px;
+    cursor: pointer;
+    &:hover{
+        color: $mat-icon-color;
+    }
+}
+img{
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+}
+.active{
+    color: $mat-icon-color !important;
+
+}
+
+

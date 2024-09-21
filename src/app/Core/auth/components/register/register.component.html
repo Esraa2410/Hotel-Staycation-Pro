@@ -1,0 +1,206 @@
+<section class="auth">
+  <div class="row g-4 min-vh-100 ">
+    <div class="col-md-6 ">
+      <div class="d-flex flex-column align-items-start scroll">
+        <h1 class="text-primary-color m-0">
+          Stay<span class="text-secondary-color">cation.</span>
+        </h1>
+        <div class="row m-auto">
+          <div>
+            <div>
+              <h2>{{"auth.register.sign-up"|translate}}</h2>
+              <p class="text-p">
+                {{"auth.register.have-account"|translate}} <br />
+                {{"auth.register.you-can"|translate}}
+                <span type="button" class="text-red-color" routerLink="/auth/login">
+                  &nbsp;&nbsp;{{"auth.register.login"|translate}}</span>
+              </p>
+            </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)" class="mt-1">
+              <!--image-->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="profile-image">
+                    <ng-container *ngIf="isImageUploade">
+                      <div class="change-image">
+                        <ngx-file-drop dropZoneClassName="" [multiple]="false" dropZoneLabel="Drop files here"
+                          (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+                          (onFileLeave)="fileLeave($event)">
+                          <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                            <div>
+                              <button type="button" (click)="openFileSelector()">
+                                <i class="fa-solid fa-camera fa-xl"></i>
+                              </button>
+                            </div>
+                          </ng-template>
+                        </ngx-file-drop>
+                      </div>
+                    </ng-container>
+                    <ngx-file-drop dropZoneClassName="drop-zone" *ngIf="!isImageUploade" [multiple]="false"
+                      dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+                      (onFileLeave)="fileLeave($event)">
+                      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <div>
+                          <button type="button" (click)="openFileSelector()"
+                            class="bg-transparent d-flex flex-column align-items-center">
+                            <i class="fa-solid fa-upload fs-4 mb-2"></i>
+                            <span class=" small"> {{"auth.register.upload"|translate}}</span>
+                          </button>
+                        </div>
+                      </ng-template>
+                    </ngx-file-drop>
+                    <div *ngIf="isImageUploade" class="drop-zone">
+                      <img [src]="imgUrl" class="w-100" alt="Uploaded Image" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--user Name-->
+              <div class="row">
+                <div class="d-flex flex-column">
+                  <label for="userName" class> {{"auth.register.username"|translate}}</label>
+                  <div class="input-group">
+                    <input formControlName="userName" type="text" class="form-control w-100"
+                      [placeholder]="'auth.type-here' | translate" id="userName" aria-label="userName"
+                      aria-describedby="basic-addon1" />
+                  </div>
+                </div>
+                <div *ngIf="registerForm.get('userName')?.errors && registerForm.get('userName')?.touched" class="d-flex align-items-center mt-1">
+                  <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+                  <p *ngIf="registerForm.get('userName')?.getError('required')" class="m-0 text-danger">
+                    {{"auth.register.username-required"|translate}}
+                  </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <!--phone Number-->
+                  <div class="d-flex flex-column">
+                    <label for="phoneNumber"> {{"auth.register.phone"|translate}}</label>
+                    <div class="input-group">
+                      <input formControlName="phoneNumber" type="text" class="form-control w-100"
+                        [placeholder]="'auth.type-here' | translate" id="phoneNumber" aria-label="phoneNumber"
+                        aria-describedby="basic-addon1" />
+                    </div>
+                  </div>
+
+                  <div *ngIf="registerForm.get('phoneNumber')?.errors && registerForm.get('phoneNumber')?.touched" class="d-flex align-items-center mt-1">
+                    <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+                    <p *ngIf="registerForm.get('phoneNumber')?.getError('required')" class="m-0 text-danger">
+                      {{"auth.register.phone-required"|translate}}
+                    </p>
+                    <p *ngIf="registerForm.get('phoneNumber')?.getError('pattern')" class="m-0 text-danger">
+                      {{"auth.register.phone-error"|translate}}
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <!--country-->
+                  <div class="d-flex flex-column">
+                    <label for="country"> {{"auth.register.country"|translate}}</label>
+                    <div class="input-group">
+                      <input formControlName="country" type="text" class="form-control w-100"
+                        [placeholder]="'auth.type-here' | translate" id="country" aria-label="country"
+                        aria-describedby="basic-addon1" />
+                    </div>
+                  </div>
+
+                  <div *ngIf="registerForm.get('country')?.errors && registerForm.get('country')?.touched" class="d-flex align-items-center mt-1">
+                    <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+                    <p *ngIf="registerForm.get('country')?.getError('required')" class="m-0 text-danger">
+                      {{"auth.register.country-required"|translate}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!--email-->
+              <div class="row">
+                <div class="mt-1 d-flex flex-column">
+                  <label for="email">{{"auth.register.email"|translate}}</label>
+                  <div class="input-group">
+                    <input formControlName="email" type="email" class="form-control w-100"
+                      [placeholder]="'auth.type-here' | translate" id="email" aria-label="Username"
+                      aria-describedby="basic-addon1" />
+                  </div>
+                </div>
+
+                <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="d-flex align-items-center mt-1">
+                  <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+                  <p *ngIf="registerForm.get('email')?.getError('required')" class="m-0 text-danger">
+                    {{"auth.register.email-required"|translate}}
+                  </p>
+                  <p *ngIf="registerForm.get('email')?.getError('email')" class="m-0 text-danger">
+                    {{"auth.register.invalid-email"|translate}}
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <!--password-->
+                  <div class="d-flex flex-column">
+                    <label for="password">{{"auth.register.password"|translate}}</label>
+                    <div class="input-group d-flex align-items-center">
+                      <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" class="form-control"
+                        [placeholder]="'auth.type-here' | translate" id="password" aria-label="Username"
+                        aria-describedby="basic-addon1" />
+                      <span>
+                        <i (click)="hidePassword = !hidePassword" class="fa-regular fs-5 pe-3 hide"
+                          [class]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="d-flex align-items-center mt-1">
+                    <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2" />
+                    <p *ngIf="registerForm.get('password')?.getError('required')" class="text-danger m-0">
+                      {{"auth.register.password-required"|translate}}
+                    </p>
+                    <p *ngIf="registerForm.get('password')?.getError('pattern')" class="text-danger m-0">
+                      {{"auth.register.password-error"|translate}}
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <!--confirm Password-->
+                  <div class="d-flex flex-column">
+                    <label for="confirmPassword" class>{{"auth.register.confirm-password"|translate}}</label>
+                    <div class="input-group d-flex align-items-center">
+                      <input formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'"
+                        class="form-control" [placeholder]="'auth.type-here' | translate" id="confirmPassword"
+                        aria-label="Username" aria-describedby="basic-addon1" />
+                      <span>
+                        <i (click)="hideConfirmPassword = !hideConfirmPassword" class="fa-regular fs-5 pe-3 hide"
+                          [class]="
+                            hideConfirmPassword ? 'fa-eye-slash' : 'fa-eye'
+                          "></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="text-danger ms-4" *ngIf="registerForm.get('confirmPassword')?.getError('compare')">
+                    <img src="./assets/images/invalid.png" width="22" height="22" alt class="mx-2">
+                    {{"auth.register.password-match"|translate}}
+                  </div>
+                </div>
+              </div>
+              <button [disabled]="registerForm.invalid || !isImageUploade" class="primary w-100 my-2 ">
+                {{"auth.register.sign-up"|translate}}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 fullImage  py-3  d-flex align-items-stretch">
+      <div class="photo  w-100">
+        <div class="layer">
+          <h2>{{"auth.register.sign-up-roamhome"|translate}}</h2>
+          <p>{{"auth.register.home-unique"|translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
